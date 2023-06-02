@@ -32,6 +32,11 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-3">
+                        <label for="livro-id">ID do livro (apenas atualização)</label>
+                        <input type="text" class="form-control" id="livro-id"
+                            placeholder="Insira um ID de livro para atualizar">
+                    </div>
+                    <div class="col-3">
                         <label for="livro-titulo">Título do livro</label>
                         <input type="text" class="form-control" id="livro-titulo" placeholder="Insira um título">
                     </div>
@@ -55,7 +60,7 @@
                             placeholder="Insira o preco do livro">
                     </div>
                     <div class="col-3">
-                        <button type="button" class="btn btn-primary" onclick="criarLivro()">Salvar</button>
+                        <button type="button" class="btn btn-primary" onclick="upsertLivro()">Salvar</button>
                     </div>
                 </div>
 

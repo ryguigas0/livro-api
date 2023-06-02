@@ -20,10 +20,10 @@ function livro2HTML(livro) {
 
 async function listarLivros() {
     console.log("listando")
-    
+
 
     let url = "/api/livro/list?"
-    
+
     let targetAuthor = document.querySelector("#target-autor").value
     if (targetAuthor) {
         url += `author=${targetAuthor}`
@@ -80,12 +80,21 @@ async function deletarLivro(idLivro) {
     }
 }
 
-async function criarLivro() {
-    console.log("Criar livro")
+async function upsertLivro() {
+    console.log("upsert livro")
+    
+    let method = "post"
+    let url = "/api/livro/insert"
+
+    const livroId = document.querySelector("#livro-id").value
+    if (livroId) {
+        method = "put"
+        url = `/api/livro/update/${livroId}`
+    }
 
     try {
-        const response = await fetch(`/api/livro/insert`, {
-            method: "post",
+        const response = await fetch(url, {
+            method: method,
             headers: {
                 "Content-Type": "application/json",
             },
@@ -98,7 +107,7 @@ async function criarLivro() {
             })
         });
 
-        if (response.status == 201) {
+        if (response.status == 201 || response.status == 200) {
             listarLivros()
         } else {
             console.error(response.status, response.body)
