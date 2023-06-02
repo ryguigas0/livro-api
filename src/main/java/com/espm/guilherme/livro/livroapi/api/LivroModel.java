@@ -43,4 +43,22 @@ public class LivroModel {
         this.ano = livroInTO.ano();
         this.preco = livroInTO.preco();
     }
+
+    public LivroModel(String id, String titulo, String autor, String editora, int ano, double preco) {
+        this.id = id;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.editora = editora;
+        this.ano = ano;
+        this.preco = preco;
+    }
+
+    public void updateData(LivroInTO livroInTO) {
+        this.autor = livroInTO.autor() == null ? this.autor : livroInTO.autor();
+        this.titulo = livroInTO.titulo() == null ? this.titulo : livroInTO.titulo();
+        this.editora = livroInTO.editora() == null ? this.editora : livroInTO.editora();
+        this.ano = livroInTO.ano() == null ? this.ano : livroInTO.ano();
+        this.preco = livroInTO.preco() == null ? this.preco : livroInTO.preco();
+    }
+
 }

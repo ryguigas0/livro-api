@@ -28,4 +28,20 @@ public class LivroService {
                         m.getEditora(), m.getAno(), m.getPreco()))
                 .toList();
     }
+
+    public LivroOutTO atualizarLivro(String livroId, LivroInTO livroInTO) {
+        LivroModel livroModel = livroRepo.findById(livroId)
+                .orElseThrow(() -> new RuntimeException("LIVRO NOT FOUND"));
+
+        livroModel.updateData(livroInTO);
+
+        LivroModel updatedModel = livroRepo.save(livroModel);
+
+        return new LivroOutTO(updatedModel.getId(), updatedModel.getTitulo(), updatedModel.getAutor(),
+                updatedModel.getEditora(), updatedModel.getAno(), updatedModel.getPreco());
+    }
+
+    public void deletarLivro(String livroId) {
+        livroRepo.deleteById(livroId);
+    }
 }
